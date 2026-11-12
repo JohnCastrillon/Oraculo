@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financiero - Oráculo</title>
+    <!-- Manifiesto PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F172A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Chart.js para los gráficos interactivos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Overlay de Carga Global -->
+<div id="dashboard-loader" class="loader-overlay">
+    <div class="spinner-container">
+    <div class="spinner"></div>
+    <p class="loader-text">Sincronizando con Google Sheets...</p>
+    </div>
+</div>    
+
+<div class="container dashboard-main-container">
+    <!-- Cabecera y Navegación -->
+    <div class="dash-header">
+        <a href="index.html" class="btn-back">← Volver al menú</a>
+        <div class="dash-title-area">
+            <h2>Panel de Control</h2>
+            <p class="subtitle">Tus finanzas en tiempo real desde Google Sheets</p>
+        </div>
+    </div>
+
+    <!-- 1. CARDS SUPERIORES -->
+    <div class="cards-grid">
+        <div class="card card-accent">
+            <span>Ahorro disponible</span>
+            <h3 id="txt-ahorro">$ 0,00</h3>
+        </div>
+        <div class="card">
+            <span>Ingresos del mes</span>
+            <h3 id="txt-ingresos">$ 0,00</h3>
+        </div>
+        <div class="card">
+            <span>Gastos del mes</span>
+            <h3 id="txt-gastos">$ 0,00</h3>
+        </div>
+        <div class="card">
+            <span>Ahorro del mes</span>
+            <h3 id="txt-ahorro-mes">$ 0,00</h3>
+        </div>
+    </div>
+
+<!-- CONTENEDOR PRINCIPAL RESPONSIVO (GRID DE 2 COLUMNAS EN PC) -->
+    <div class="dashboard-desktop-layout">
+        
+        <!-- COLUMNA IZQUIERDA: GRÁFICOS + TOP 3 -->
+        <div class="charts-grid">      
+        <!-- Gráfico de Flujo (Barras) -->
+            <div class="chart-card">
+                <h3>Flujo de dinero</h3>
+                <p class="chart-sub">Ingresos vs Gastos mensuales</p>
+                <div class="canvas-wrapper">
+                    <canvas id="flowChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Gráfico de Categorías (Anillo) -->
+            <div class="chart-card">
+                <h3>¿En qué se va tu dinero?</h3>
+                <p class="chart-sub">Distribución de gastos</p>
+                <div class="canvas-wrapper doughnut-wrapper">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+
+            <!-- TOP 3 CATEGORÍAS CON MAYOR GASTO -->
+                <div class="top-categories-box">
+                    <h4 class="top-categories-title">Top 3 Categorías de Gasto</h4>
+
+                    <div id="top-categories-list" class="top-categories-list">
+                        <p style="color: var(--text-muted); font-size: 0.85rem; text-align: center;">Calculando categorías...</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div> <!-- Fin de .charts-grid -->
+
+        <!-- COLUMNA DERECHA: TABLA DE ÚLTIMOS MOVIMIENTOS -->
+        <div class="table-card">
+            <h3>Últimos movimientos</h3>
+            <div class="table-responsive">
+                <table class="movimientos-table">
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Concepto</th>
+                            <th>Fecha</th>
+                            <th>Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-movimientos">
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 20px;">
+                        Cargando movimientos...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> <!-- Fin de .table-card -->
+
+    </div> <!-- Fin de .dashboard-desktop-layout -->
+</div> <!-- Fin de .dashboard-main-container -->
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
