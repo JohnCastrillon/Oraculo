@@ -3,6 +3,7 @@
     "short_name": "Oráculo",
     "description": "Control financiero personal y flujo de caja sincronizado con Google Sheets",
     "start_url": "index.html",
+    "scope": "./",
     "display": "standalone",
     "background_color": "#0F172A",
     "theme_color": "#0F172A",
@@ -11,12 +12,14 @@
     {
         "src": "assets/icon-192.png",
         "sizes": "192x192",
-        "type": "image/png"
+        "type": "image/png",
+        "purpose": "any maskable"
     },
     {
         "src": "assets/icon-512.png",
         "sizes": "512x512",
-        "type": "image/png"
+        "type": "image/png",
+        "purpose": "any maskable"
     }
     ]
 }
