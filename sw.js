@@ -1,5 +1,5 @@
 // Nombre del caché local
-const CACHE_NAME = 'oraculo-v1';
+const CACHE_NAME = 'oraculo-v2';
 
 // Recursos esenciales que se guardan en el dispositivo
 const STATIC_ASSETS = [
